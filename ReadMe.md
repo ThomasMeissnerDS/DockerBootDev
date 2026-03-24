@@ -236,3 +236,13 @@ docker run -d --cpus="0.25" --name cpu-stress alexeiled/stress-ng --cpu 2 --time
 
 * Push docker image to docker hub: `docker push <docker hub username>/<container name>`
 
+
+## Tags
+
+With Docker, a tag is a label that you can assign to a specific version of an image, 
+similar to a tag in Git.
+
+The latest tag is the default tag that Docker uses when you don't specify one. It's a 
+convention to use latest for the most recent version of an image, but it's also common 
+to include other tags, often semantic versioning tags like 0.1.0, 0.2.0, etc.
+
