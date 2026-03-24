@@ -193,3 +193,46 @@ docker build . -t helloworld:latest
 
 The -t helloworld:latest flag tags the image with the name "helloworld" and the "latest" tag. 
 Names are used to organize your images, and tags are used to keep track of different versions.
+
+## Logs
+
+When containers are running in detached mode with the -d flag, you don't see any output in your 
+terminal, which is nice for keeping your terminal clean, but what if something goes wrong?
+
+Enter the docker logs command.
+
+i.e.: 
+`docker run -d --name logdate alpine sh -c 'while true; do echo "LOGGING: $(date)"; sleep 1; done`
+
+The sh -c 'while true; do echo "LOGGING: $(date)"; sleep 1; done' part is just a simple shell
+script to execute inside the container that prints the current date and time every second.
+`
+
+Show the logs:
+`docker logs <container id>`
+
+See last 5 logs:
+`docker logs --tail 5 <container id>`
+
+See logs in real time:
+`docker logs <container id> -f`
+
+## Stats
+
+* Run `docker stats` to see resource utilization of all running docker containers
+* Run `docker top <container id>` to see the processes inside a container
+
+## Resource limits
+
+With `docker run` we can define resource allocation limits for a container, i.e.:
+
+```
+docker run -d --cpus="0.25" --name cpu-stress alexeiled/stress-ng --cpu 2 --timeout 10m
+```
+
+## Publishing to Docker Hub
+
+* Build docker image: `docker build . -t <docker hub username>/<container name>`
+
+* Push docker image to docker hub: `docker push <docker hub username>/<container name>`
+
